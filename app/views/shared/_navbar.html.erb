@@ -32,6 +32,21 @@
           <% end %>
         <% end %>
         
+        <!-- 待支付订单图标 -->
+        <% if session[:pending_order_id].present? %>
+          <% pending_order = Order.find_by(id: session[:pending_order_id], status: 'pending') %>
+          <% if pending_order %>
+            <%= link_to order_path(pending_order), class: "relative text-amber-600 hover:text-amber-700 transition", title: "Pending Payment" do %>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+              </svg>
+              <span class="absolute -top-2 -right-2 bg-amber-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                1
+              </span>
+            <% end %>
+          <% end %>
+        <% end %>
+        
         <% if user_signed_in? %>
           <% if current_user.admin? %>
             <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Admin</span>
