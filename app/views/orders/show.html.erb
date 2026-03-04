@@ -189,7 +189,7 @@
   </div>
 
   <% if @order.pending? %>
-    <% client_id = Rails.application.credentials.dig(:paypal, :client_id) || "AfXsj5DQPtRsifmJ6-zEDj7HSRAcM7TCGFUV7-9m_Se06WKHDpqWR3fQFhj8ZUILI-i6l83HL8mTwny-" %>
+    <% client_id = ENV.fetch("PAYPAL_CLIENT_ID") { "AfXsj5DQPtRsifmJ6-zEDj7HSRAcM7TCGFUV7-9m_Se06WKHDpqWR3fQFhj8ZUILI-i6l83HL8mTwny-" } %>
     <script src="https://www.paypal.com/sdk/js?client-id=<%= client_id %>&currency=USD" data-turbo-eval="false"></script>
     <script>
       function renderPayPalButton() {
