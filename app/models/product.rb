@@ -19,6 +19,9 @@ class Product < ApplicationRecord
   # 业务约束 1: product 只能挂最底层分类（叶子分类）
   validate :category_must_be_leaf
   
+  # 验证：如果没有任何变体，则必须填写产品价格
+  validate :price_required_if_no_variants
+
   # 作用域
   scope :visible, -> { where(is_hidden: false) }
   scope :hidden, -> { where(is_hidden: true) }
@@ -27,7 +30,7 @@ class Product < ApplicationRecord
   
   # 方法
   def default_variant
-    variants.ordered.first
+    variants.active.ordered.first
   end
 
   def min_price
@@ -49,7 +52,16 @@ class Product < ApplicationRecord
 
   def category_must_be_leaf
     if category.present? && !category.leaf?
-      errors.add(:category_id, "必须是底层（叶子）分类，不能挂在有子分类的节点下")
+      errors.add(:category_id, "must be a leaf category (cannot have sub-categories)")
+    end
+  end
+
+  def price_required_if_no_variants
+    # 如果没有活动的变体，且没有设置主价格，则报错
+    # 注意：在创建时，variants 可能还没保存，通过 variants_attributes 传进来的可以通过 variants 对象访问
+    active_variants = variants.reject(&:marked_for_destruction?).select { |v| v.is_active? }
+    if active_variants.empty? && price.nil?
+      errors.add(:price, "is required if no active variants are defined")
     end
   end
 end

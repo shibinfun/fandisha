@@ -134,13 +134,13 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 text-center text-sm text-gray-900">
-                    ¥<%= number_to_currency(order_item.price, unit: "", precision: 2) %>
+                    $<%= number_to_currency(order_item.price, unit: "", precision: 2) %>
                   </td>
                   <td class="px-6 py-4 text-center text-sm text-gray-900">
                     <%= order_item.quantity %>
                   </td>
                   <td class="px-6 py-4 text-right text-sm font-semibold text-gray-900">
-                    ¥<%= number_to_currency(order_item.subtotal, unit: "", precision: 2) %>
+                    $<%= number_to_currency(order_item.subtotal, unit: "", precision: 2) %>
                   </td>
                 </tr>
               <% end %>
@@ -155,7 +155,7 @@
           <div class="space-y-2 mb-4">
             <div class="flex justify-between text-gray-600">
               <span>Items Total</span>
-              <span>¥<%= number_to_currency(@order.total_price, unit: "", precision: 2) %></span>
+              <span>$<%= number_to_currency(@order.total_price, unit: "", precision: 2) %></span>
             </div>
             <div class="flex justify-between text-gray-600">
               <span>Shipping</span>
@@ -166,7 +166,7 @@
             <div class="flex justify-between items-center">
               <span class="text-xl font-semibold text-gray-900">Order Total</span>
               <span class="text-3xl font-bold text-blue-600">
-                ¥<%= number_to_currency(@order.total_price, unit: "", precision: 2) %>
+                $<%= number_to_currency(@order.total_price, unit: "", precision: 2) %>
               </span>
             </div>
           </div>

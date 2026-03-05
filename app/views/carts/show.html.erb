@@ -32,7 +32,7 @@
                   <div class="flex-1 min-w-0">
                     <%= link_to product.name, product_path(product), class: "text-lg font-semibold text-gray-900 hover:text-blue-600" %>
                     <p class="text-sm text-gray-600 font-medium mt-1">Option: <%= variant.title %></p>
-                    <p class="text-sm text-gray-500 mt-1">Unit Price: ¥<%= number_to_currency(variant.price, unit: "", precision: 2) %></p>
+                    <p class="text-sm text-gray-500 mt-1">Unit Price: $<%= number_to_currency(variant.price, unit: "", precision: 2) %></p>
                     
                     <!-- 数量控制 -->
                     <div class="mt-3 flex items-center space-x-3 cart-quantity-controls">
@@ -51,7 +51,7 @@
                   <!-- 小计 -->
                   <div class="text-right">
                     <p class="text-xl font-bold text-gray-900">
-                      ¥<%= number_to_currency(cart_item.subtotal, unit: "", precision: 2) %>
+                      $<%= number_to_currency(cart_item.subtotal, unit: "", precision: 2) %>
                     </p>
                   </div>
                 </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="flex justify-between text-gray-600">
               <span>Subtotal</span>
-              <span>¥<%= number_to_currency(@cart.total_price, unit: "", precision: 2) %></span>
+              <span>$<%= number_to_currency(@cart.total_price, unit: "", precision: 2) %></span>
             </div>
             <div class="flex justify-between text-gray-600">
               <span>Shipping</span>
@@ -95,7 +95,7 @@
             <div class="flex justify-between items-center">
               <span class="text-lg font-semibold text-gray-900">Total</span>
               <span class="text-2xl font-bold text-blue-600">
-                ¥<%= number_to_currency(@cart.total_price, unit: "", precision: 2) %>
+                $<%= number_to_currency(@cart.total_price, unit: "", precision: 2) %>
               </span>
             </div>
           </div>

@@ -60,12 +60,12 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to products_path, alert: "产品不存在"
+    redirect_to products_path, alert: "Product not found"
   end
   
   def check_product_visibility
     if @product.hidden?
-      redirect_to products_path, alert: "该产品暂时无法查看"
+      redirect_to products_path, alert: "This product is currently unavailable"
     end
   end
 end

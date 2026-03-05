@@ -38,13 +38,13 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">
-                  <% if product.variants.any? %>
-                    ¥<%= number_to_currency(product.min_price, unit: "", precision: 2) %>
+                  <% if product.variants.active.any? %>
+                    $<%= number_to_currency(product.min_price, unit: "", precision: 2) %>
                     <% if product.min_price != product.max_price %>
-                      - ¥<%= number_to_currency(product.max_price, unit: "", precision: 2) %>
+                      - $<%= number_to_currency(product.max_price, unit: "", precision: 2) %>
                     <% end %>
                   <% else %>
-                    ¥<%= number_to_currency(product.price, unit: "", precision: 2) %>
+                    $<%= number_to_currency(product.price, unit: "", precision: 2) %>
                   <% end %>
                 </div>
               </td>

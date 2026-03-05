@@ -55,16 +55,16 @@
 
         <!-- 价格 -->
         <div class="mb-6">
-          <% if @product.variants.any? %>
+          <% if @product.variants.active.any? %>
             <div id="price-display" class="text-4xl font-bold text-blue-600">
-              ¥<%= number_to_currency(@product.min_price, unit: "", precision: 2) %>
+              $<%= number_to_currency(@product.min_price, unit: "", precision: 2) %>
               <% if @product.min_price != @product.max_price %>
-                - ¥<%= number_to_currency(@product.max_price, unit: "", precision: 2) %>
+                - $<%= number_to_currency(@product.max_price, unit: "", precision: 2) %>
               <% end %>
             </div>
           <% else %>
             <div class="text-4xl font-bold text-blue-600">
-              ¥<%= number_to_currency(@product.price, unit: "", precision: 2) %>
+              $<%= number_to_currency(@product.price, unit: "", precision: 2) %>
             </div>
           <% end %>
         </div>
@@ -100,11 +100,11 @@
                 <div class="grid grid-cols-2 gap-3">
                   <% @product.variants.active.ordered.each_with_index do |variant, index| %>
                     <label class="variant-option relative flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer hover:border-blue-500 transition-all duration-200 group <%= index == 0 ? 'border-blue-600 bg-blue-50 ring-2 ring-blue-100' : 'border-gray-200' %>" 
-                           onclick="updatePrice('<%= number_to_currency(variant.price, unit: '¥', precision: 2) %>'); selectVariant(this)">
+                           onclick="updatePrice('<%= number_to_currency(variant.price, unit: '$', precision: 2) %>'); selectVariant(this)">
                       <input type="radio" name="variant_id" value="<%= variant.id %>" class="sr-only" <%= 'checked' if index == 0 %>>
                       <div class="text-center pointer-events-none">
                         <span class="block text-sm font-bold text-gray-900"><%= variant.title %></span>
-                        <span class="block text-xs text-gray-500 mt-1">¥<%= number_to_currency(variant.price, unit: "", precision: 2) %></span>
+                        <span class="block text-xs text-gray-500 mt-1">$<%= number_to_currency(variant.price, unit: "", precision: 2) %></span>
                       </div>
                     </label>
                   <% end %>
@@ -203,9 +203,9 @@
               <h3 class="font-semibold text-gray-900 mb-2 truncate"><%= related_product.name %></h3>
               <p class="text-xl font-bold text-blue-600">
                 <% if related_product.variants.any? %>
-                  ¥<%= number_to_currency(related_product.min_price, unit: "", precision: 2) %>+
+                  $<%= number_to_currency(related_product.min_price, unit: "", precision: 2) %>+
                 <% else %>
-                  ¥<%= number_to_currency(related_product.price, unit: "", precision: 2) %>
+                  $<%= number_to_currency(related_product.price, unit: "", precision: 2) %>
                 <% end %>
               </p>
             </div>

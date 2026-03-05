@@ -45,13 +45,13 @@
       <div class="mb-6">
         <% if @product.variants.any? %>
           <span class="text-3xl font-bold text-blue-600">
-            ¥<%= number_to_currency(@product.min_price, unit: "", precision: 2) %>
+            $<%= number_to_currency(@product.min_price, unit: "", precision: 2) %>
             <% if @product.min_price != @product.max_price %>
-              - ¥<%= number_to_currency(@product.max_price, unit: "", precision: 2) %>
+              - $<%= number_to_currency(@product.max_price, unit: "", precision: 2) %>
             <% end %>
           </span>
         <% else %>
-          <span class="text-3xl font-bold text-blue-600">¥<%= number_to_currency(@product.price, unit: "", precision: 2) %></span>
+          <span class="text-3xl font-bold text-blue-600">$<%= number_to_currency(@product.price, unit: "", precision: 2) %></span>
         <% end %>
       </div>
 
@@ -81,7 +81,7 @@
                 <% @product.variants.ordered.each do |variant| %>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= variant.title %></td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">¥<%= number_to_currency(variant.price, unit: "", precision: 2) %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$<%= number_to_currency(variant.price, unit: "", precision: 2) %></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= variant.stock %></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= variant.sku %></td>
                     <td class="px-6 py-4 whitespace-nowrap">

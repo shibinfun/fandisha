@@ -1,8 +1,14 @@
 <!-- Luxury Hero Section -->
 <section class="relative h-[80vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-gray-900">
   <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-black/40 z-10"></div>
+    <!-- Decorative gradient blobs for subtle motion -->
+    <div class="absolute -top-10 -left-10 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl animate-float-slow"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-500/10 rounded-full blur-3xl animate-float-slower"></div>
+
     <%= image_tag "banner1.png", class: "w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out", id: "hero-zoom", alt: "Fandisha Luxury Hair" %>
+
+    <!-- Soft vignette overlay -->
+    <div class="absolute inset-0 bg-black/40 z-10"></div>
   </div>
   
   <div class="relative z-20 text-center px-6 max-w-4xl reveal">
@@ -10,11 +16,11 @@
     <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
       FANDISHA’S BUNDLES
     </h1>
-    <p class="text-xl md:text-2xl text-white/30 font-light italic mb-10 tracking-wide">
+    <p class="text-xl md:text-2xl text-gray-300 font-light italic mb-10 tracking-wide">
       Where Luxury Meets Timeless Beauty
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <%= link_to "Shop the Collection", products_path, class: "px-10 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-xl hover:scale-105 active:scale-95" %>
+      <%= link_to "Shop the Collection", products_path, class: "px-10 py-4 bg-emerald-600 text-white font-bold rounded-full hover:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95 glow" %>
 
     </div>
   </div>
@@ -222,7 +228,7 @@
     <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto italic font-light">
       Because luxury is not about excess. It’s about excellence. Indulge in hair that reflects your standard.
     </p>
-    <%= link_to "Explore the Full Collection", products_path, class: "inline-block px-12 py-5 bg-gray-900 text-white font-bold rounded-full hover:bg-emerald-600 transition-all duration-300 shadow-2xl hover:scale-105 active:scale-95" %>
+    <%= link_to "Explore the Full Collection", products_path, class: "inline-block px-12 py-5 bg-emerald-600 text-white font-bold rounded-full hover:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all duration-300 shadow-2xl hover:scale-105 active:scale-95 glow" %>
   </div>
 </section>
 
@@ -230,6 +236,18 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.revealed { opacity: 1; transform: translateY(0); }
   .reveal-delay-2 { transition-delay: 200ms; }
+
+  /* Subtle floating motion for decorative blobs */
+  .animate-float-slow { animation: float 14s ease-in-out infinite; }
+  .animate-float-slower { animation: float 20s ease-in-out infinite alternate-reverse; }
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0) scale(1); }
+    50% { transform: translateY(-12px) translateX(6px) scale(1.03); }
+    100% { transform: translateY(0) translateX(0) scale(1); }
+  }
+
+  /* Soft button glow on hover */
+  .glow:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.45); }
   
   #hero-zoom { animation: slow-zoom 20s infinite alternate linear; }
   @keyframes slow-zoom {
